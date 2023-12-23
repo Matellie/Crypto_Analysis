@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_BTC_USD(data):
-    # Compute average price per day
+    # Compute average price per day for plotting
     avg_price = [open + close / 2 for open, close in zip(data[:,0], data[:,3])]
 
     #Plot BTC-USD
@@ -23,7 +23,7 @@ def plot_BTC_USD(data):
     plt.show()
 
 def plot_clusters_kmeans(data):
-    # Compute the clusters
+    # Compute clusters
     kmeans_2 = KMeans(n_clusters=2, random_state=0, n_init=10).fit(data)
     kmeans_5 = KMeans(n_clusters=5, random_state=0, n_init=10).fit(data)
 
@@ -50,8 +50,10 @@ def plot_clusters_kmeans(data):
     plt.show()
 
 def plot_PCA(data):
+    # Compute PCA
     pca = PCA().fit(data)
 
+    # Plot PCA explained variance ratio
     plt.bar(
         range(1, len(pca.explained_variance_ratio_)+1),
         pca.explained_variance_ratio_
@@ -60,8 +62,10 @@ def plot_PCA(data):
     plt.show()
 
 def plot_dimension_impact(data):
+    # Compute PCA
     pca = PCA().fit(data)
 
+    # Plot PCA components
     plt.bar(
         range(1, len(pca.components_)+1),
         pca.components_[0]
@@ -70,8 +74,10 @@ def plot_dimension_impact(data):
     plt.show()
 
 def plot_clusters_volume(data):
+    # Compute clusters
     kmeans_5 = KMeans(n_clusters=5, random_state=0, n_init=10).fit(data)
 
+    # Plot clusters with volume as y axis
     plt.scatter(
         [a for a in range(len(data))], 
         data[:,4], 
